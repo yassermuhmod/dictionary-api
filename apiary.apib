@@ -1,0 +1,86 @@
+FORMAT: 1A
+HOST: https://dictionary.iachieved.it/
+
+# Dictionary API
+
+## Dictionary [/dictionary]
+
+### Create a New Dictionary [POST]
+
+Create a new dictionary.
+
++ Request (application/json)
+
+        {}
+
++ Response 201 (application/json)
+
+    + Body
+
+            {
+                "id":"dictionary-id"
+            }
+            
+### Delete a Dictionary [DELETE /dictionary/{id}]
+
+Delete a dictionary.
+
++ Request (application/json)     
+
++ Response 200 (application/json)
+
++ Response 404 (application/json)
+        
+### Get all Keys [GET /dictionary/{id}/keys]
+
+Returns all the keys in the dictionary.
+
++ Request (application/json)
+
++ Response 200 (application/json)
+
+        {
+            "count": n,
+            "keys": [
+                "key1",
+                "key2",
+                ...,
+                "keyn"
+            ]
+        }
+    
++ Response 404 (application/json)
+        
+### Create or Modify a Key-Value Pair [POST /dictionary/{id}/keys/{key}]
+
++ Request (application/json)
+
+    + Body
+
+            {
+              "value":"VALUE"
+            }
+        
++ Response 201 (applicationjson)
+
+### Get a Value [GET /dictionary/{id}/keys/{key}]
+
+Given a key, returns a value.
+
++ Request (application/json)
+        
++ Response 200 (application/json)
+
+        {
+            "value":"value"
+        }
+
++ Response 404 (application/json)
+
+### Delete a Key-Value Pair [DELETE /dictionary/{id}/keys/{key}]
+
++ Request (application/json)
+
++ Response 200 (application/json)
+
++ Response 404 (application/json)
