@@ -1,7 +1,7 @@
 FORMAT: 1A
 HOST: https://dictionary.iachieved.it/
 
-# Dictionary
+# Dictionary API
 
 ## Dictionary [/dictionary]
 
@@ -17,11 +17,11 @@ Create a new dictionary.
 
     + Body
 
-        {
-            "id":"dictionary-id"
-        }
+            {
+                "id":"dictionary-id"
+            }
             
-### Delete a Dictionary [DELETE]
+### Delete a Dictionary [DELETE /dictionary/{id}]
 
 Delete a dictionary.
 
@@ -30,35 +30,44 @@ Delete a dictionary.
 + Response 200 (application/json)
 
 + Response 404 (application/json)
-            
-## Dictionary [/dictionary/{id}]
-            
-    + Parameters
-        + id
         
-### Create or Modify a Key-Value Pair [POST]
+### Get all Keys [GET /dictionary/{id}/keys]
+
+Returns all the keys in the dictionary.
 
 + Request (application/json)
 
++ Response 200 (application/json)
+
+        {
+            "count": n,
+            "keys": [
+                "key1",
+                "key2",
+                ...,
+                "keyn"
+            ]
+        }
+    
++ Response 404 (application/json)
+        
+### Create or Modify a Key-Value Pair [POST /dictionary/{id}/keys/{key}]
+
++ Request (application/json)
 
     + Body
 
-        {
-          "key":"KEY"
-          "value":"VALUE"
-        }
+            {
+              "value":"VALUE"
+            }
         
 + Response 201 (applicationjson)
 
-### Get a Value [GET]
+### Get a Value [GET /dictionary/{id}/keys/{key}]
 
 Given a key, returns a value.
 
 + Request (application/json)
-
-        {
-            "key":"KEY"
-        }
         
 + Response 200 (application/json)
 
@@ -68,36 +77,10 @@ Given a key, returns a value.
 
 + Response 404 (application/json)
 
-### Get all Keys [GET]
-
-Returns all keys in the dictionary.
-
-+ Request (application/json)
-
-+ Response 200 (application/json)
-
-    {
-        "count": n,
-        "keys": [
-            "key1",
-            "key2",
-            ...,
-            "keyn"
-        ]
-    }
-    
-+ Response 404 (application/json)
-
-### Get all Keys and Values [GET]
-
-Returns all keys and values in the dictionary.
+### Delete a Key-Value Pair [DELETE /dictionary/{id}/keys/{key}]
 
 + Request (application/json)
 
 + Response 200 (application/json)
 
 + Response 404 (application/json)
-
-### Delete a Key-Value Pair [DELETE]
-
-+ Request (application/json)
