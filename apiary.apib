@@ -1,0 +1,46 @@
+FORMAT: 1A
+HOST: https://dictionary.iachieved.it/
+
+# Dictionary
+
+## Dictionary [/dictionary]
+
+### Create a New Dictionary [POST]
+
++ Request (application/json)
+
+        {}
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /dictionaries/2
+
+    + Body
+
+            {}
+            
+
+### Create/Modify a Key-Value Pair [POST]
+
++ Request (application/json)
+
+        {
+          "key":"KEY"
+          "value":"VALUE"
+        }
+        
++ Response 201 (applicationjson)
+
+### Get a Value [GET]
+
++ Request (application/json)
+
+        {
+            "key":"KEY"
+        }
+### Get all Keys [GET]
+### Get all Keys and Values [GET]
+### Delete a Key-Value Pair [DELETE]
+### Delete a Dictionary [DELETE]
