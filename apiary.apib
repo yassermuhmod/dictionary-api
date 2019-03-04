@@ -1,86 +1,80 @@
 FORMAT: 1A
-HOST: https://dictionary.iachieved.it/
+HOST: http://polls.apiblueprint.org/
 
-# Dictionary API
+# rest
 
-## Dictionary [/dictionary]
+Polls is a simple API allowing consumers to view polls and vote in them.
 
-### Create a New Dictionary [POST]
+## Questions Collection [/questions]
 
-Create a new dictionary.
+### List All Questions [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "question": "Favourite programming language?",
+                "published_at": "2015-08-05T08:40:51.620Z",
+                "choices": [
+                    {
+                        "choice": "Swift",
+                        "votes": 2048
+                    }, {
+                        "choice": "Python",
+                        "votes": 1024
+                    }, {
+                        "choice": "Objective-C",
+                        "votes": 512
+                    }, {
+                        "choice": "Ruby",
+                        "votes": 256
+                    }
+                ]
+            }
+        ]
+
+### Create a New Question [POST]
+
+You may create your own question using this action. It takes a JSON
+object containing a question and a collection of answers in the
+form of choices.
 
 + Request (application/json)
 
-        {}
+        {
+            "question": "Favourite programming language?",
+            "choices": [
+                "Swift",
+                "Python",
+                "Objective-C",
+                "Ruby"
+            ]
+        }
 
 + Response 201 (application/json)
 
-    + Body
-
-            {
-                "id":"dictionary-id"
-            }
-            
-### Delete a Dictionary [DELETE /dictionary/{id}]
-
-Delete a dictionary.
-
-+ Request (application/json)     
-
-+ Response 200 (application/json)
-
-+ Response 404 (application/json)
-        
-### Get all Keys [GET /dictionary/{id}/keys]
-
-Returns all the keys in the dictionary.
-
-+ Request (application/json)
-
-+ Response 200 (application/json)
-
-        {
-            "count": n,
-            "keys": [
-                "key1",
-                "key2",
-                ...,
-                "keyn"
-            ]
-        }
-    
-+ Response 404 (application/json)
-        
-### Create or Modify a Key-Value Pair [POST /dictionary/{id}/keys/{key}]
-
-+ Request (application/json)
+    + Headers
+            Authorization: Basic cWFjYW5kaWRhdGU6c29mdEtpdHR5TGl0dGxlQmFsbG9mRnVy
+            Location: /questions/2
 
     + Body
 
             {
-              "value":"VALUE"
+                "question": "Favourite programming language?",
+                "published_at": "2015-08-05T08:40:51.620Z",
+                "choices": [
+                    {
+                        "choice": "Swift",
+                        "votes": 0
+                    }, {
+                        "choice": "Python",
+                        "votes": 0
+                    }, {
+                        "choice": "Objective-C",
+                        "votes": 0
+                    }, {
+                        "choice": "Ruby",
+                        "votes": 0
+                    }
+                ]
             }
-        
-+ Response 201 (applicationjson)
-
-### Get a Value [GET /dictionary/{id}/keys/{key}]
-
-Given a key, returns a value.
-
-+ Request (application/json)
-        
-+ Response 200 (application/json)
-
-        {
-            "value":"value"
-        }
-
-+ Response 404 (application/json)
-
-### Delete a Key-Value Pair [DELETE /dictionary/{id}/keys/{key}]
-
-+ Request (application/json)
-
-+ Response 200 (application/json)
-
-+ Response 404 (application/json)
